@@ -1,0 +1,7 @@
+.*
+*.class
+Env.java
+
+!.gitignore
+!bin/**/
+!bin/**/.gitkeep

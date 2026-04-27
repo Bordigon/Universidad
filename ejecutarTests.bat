@@ -1,0 +1,1 @@
+java -jar lib/junit-platform-console-standalone-1.9.2.jar --class-path "bin;lib/mysql-connector-j-9.6.0.jar" --scan-class-path

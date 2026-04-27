@@ -1,4 +1,4 @@
-package s1;
+package tests;
 
 import entregas.base_de_datos.p1.*;
 import entregas.Env;

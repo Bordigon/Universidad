@@ -1,4 +1,4 @@
-package entregas.base_de_datos.p1;
+package cursos;
 
 public class BBDDException extends Exception {
 

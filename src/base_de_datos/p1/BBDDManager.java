@@ -1,4 +1,4 @@
-package entregas.base_de_datos.p1;
+package cursos;
 
 import java.sql.*;
 
@@ -49,7 +49,7 @@ public class BBDDManager {
         			this.conn.commit();
         		}
         		catch (Exception x){
-        			result.add("Otro:" + x.getMessage() + ";");
+        			result.add("Otro: 1" + x.getMessage() + ";");
         		}
         	}
         	catch (SQLException e) {
@@ -58,22 +58,22 @@ public class BBDDManager {
         			this.conn.rollback();
         		}
         		catch (Exception x){
-        			result.add("Otro:" + x.getMessage() + ";");
+        			result.add("Otro: 2" + x.getMessage() + ";");
         		}
         	}
         	catch (Exception e) {
-        		result.add("Otro:" + e.getMessage() + ";");
+        		result.add("Otro: 3" + e.getMessage() + ";");
         	}
         	
         }
         try {
-        	this.conn.close();
+        	conn.close();
         }
         catch (SQLException e) {
             result.add("Connection:" + e.getMessage() + ";");
         }
         catch (Exception e) {
-            result.add("Otro:" + e.getMessage() + ";");
+            result.add("Otro: 4" + e.getMessage() + ";");
         }
         result.add("fin");
         return result;

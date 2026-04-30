@@ -1,5 +1,5 @@
 
-package entregas.base_de_datos.p1;
+package cursos;
 
 import java.util.*;
 

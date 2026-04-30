@@ -1,11 +1,10 @@
 package cursos;
 import java.sql.*;
 
-public class CreateTable implements DataBaseTask {
-	
+public class DropTable implements DataBaseTask {
+    
 	private String table;
-
-	public CreateTable(String data){
+	public DropTable(String data){
 		this.table = data;
 	}
 
@@ -13,7 +12,7 @@ public class CreateTable implements DataBaseTask {
     public void run(Connection conn, String data) throws BBDDException, SQLException {
         try {
             Statement st = conn.createStatement();
-            st.executeUpdate("CREATE TABLE "+table+" (profesor_id INT NOT NULL, curso_id INT NOT NULL, n_modulo INT NOT NULL, aula_id INT NOT NULL, fecha DATE NOT NULL, PRIMARY KEY (profesor_id, curso_id, n_modulo, aula_id, fecha))");
+            st.executeUpdate("DROP TABLE "+table);
             st.close();
         }
         catch (SQLException e) {

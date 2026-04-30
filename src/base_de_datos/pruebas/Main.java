@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.ResultSet;
 import entregas.Env;
+import java.time.LocalDate;
+import java.sql.Date;
 
 public class Main{
 
@@ -61,16 +63,39 @@ public class Main{
 		rs.close();	
 
 	}
+	
+	private String[] frase(String xd){
+		String[] result = xd.split(",");
+		System.out.println(result[0].trim() + result[1].trim());
+		return result;
+	}
+
+	private LocalDate fecha(){
+		LocalDate f = LocalDate.of(1,1,1);
+		System.out.println(f);
+		return f;
+	
+	}
 
 
 	public static void main(String[] args){
 		Main p = new Main();
 
-		
+		/*
 		try{p.ejemploConsulta2();
 		}catch(SQLException e){System.out.println("Error: " + e.getMessage());}
 		
 
 		try{p.ejemploPSBasico(5);}catch(SQLException e){System.out.println("Error: " + e.getMessage());}
+		*/
+
+		p.frase("car, jeep, scooter");
+		p.fecha();
+
 	}
 }
+
+
+
+
+

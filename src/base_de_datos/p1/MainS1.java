@@ -1,5 +1,6 @@
-package entregas.base_de_datos.p1;
+package cursos;
 import entregas.Env;
+
 
 public class MainS1 {
 
@@ -10,7 +11,7 @@ public class MainS1 {
 
         // Crear las tareas
         DataBaseTask[] tasks = {
-            new CreateTable()
+            new CreateTable("hola")
         };
         String[] data = { "" };
 
@@ -20,7 +21,7 @@ public class MainS1 {
     }
 
     public static void main(String[] args) {
-        test();
+       // test();
     }
 }
 

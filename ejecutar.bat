@@ -15,5 +15,7 @@ java -cp bin;lib/cclib.jar;lib/mysql-connector-j-9.6.0.jar entregas.concurrencia
 exit /b
 
 :cursos
-java -cp bin;lib/cclib.jar;lib/mysql-connector-j-9.6.0.jar cursos.%2
+java -jar lib/junit-platform-console-standalone-1.9.2.jar --class-path "bin;lib/mysql-connector-j-9.6.0.jar" --select-class cursos.MainS4
+
+
 

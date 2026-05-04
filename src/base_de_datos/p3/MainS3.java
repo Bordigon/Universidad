@@ -74,10 +74,8 @@ public class MainS3 {
     }
 
     public static void main(String[] args) {
-        test1();
+        //test1();
 	test3();
-	limpieza();
-
     }
 }
 

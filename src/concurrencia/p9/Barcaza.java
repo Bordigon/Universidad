@@ -1,4 +1,5 @@
 // CTAD Barcaza
+package entregas.concurrencia.p9;
 public interface Barcaza {
 
     // tipo Nacionalidad = Truhan | Bribon

@@ -1,0 +1,89 @@
+========================================================================
+COMENTARIOS GENERALES SOBRE USO DE MONITORES EN LA PRACTICA
+
+La metodología enseñada en la asignatura está para mantener bajo
+control los errores de concurrencia.
+
+- Las operaciones deben seguir un patrón de código como este:
+
+mutex.enter();
+
+<<Opcional: código para calcular CPRE>>
+
+if (!<<CPRE>>) {   // Si CPRE == true se puede omitir obviamente
+  <<Código de bloqueo: await()>>
+}
+
+<<Código de la operación que asegure la POST>>
+
+<<Código de desbloqueo: ejecución de (máximo un) signal()>>
+
+mutex.leave();
+
+<<return de datos si es necesario>>
+
+- Está prohibido llamar enter() o leave() mas que una vez durante la
+  ejecucción de una operacion.
+
+- Está prohibido acceder (leer o escribir) al estado del recurso sin
+  llamar antes a enter(). Se cuenta como parte del estado del recurso tambien
+  los atributos que guardan condiciones (a las que se llama await y signal) etc.
+
+- Está prohibido llamar el método que implementa una operacion desde un
+  método que implementa una operacion.
+
+- Solo se puede llamar a await() una vez. No está permitido llamar await() dentro una bucle
+  (o recursivamente).
+
+- Solo se puede llamar a signal() una vez.
+
+- Cuando la PRE de una operación no depende del estado del recurso, se
+  puede comprobar antes de enter()
+
+- No se puede usar mas que una mutex en la implementación del recurso.
+
+- Cuando la PRE de una operación depende del estado del recurso, debe
+  comprobarse despues de enter() y es necesario ejecutar
+  leave() antes de lanzar la excepción para liberar el monitor
+
+------------------------------------------------------------------------
+SOBRE ESTILO, BUENAS PRÁCTICAS Y DETALLES DE JAVA
+
+- Se deben seguir las convenciones de código que suelen rodear a Java
+  Ej. buenos nombres de variables y operaciones, nombre de las clases
+  empezando en mayúsculas, sangrado (indentation) consistente, etc.
+
+- No deberían quedar sentencias de depuración (prints)
+
+- No deberían quedar comentarios // TODO (to do = por hacer)
+
+- No debería dejarse código comentado y finalmente descartado.
+
+- Los comentarios deben ser "buenos" y deben ayudar a
+  leer el código. Por ejemplo:
+
+  - Los comentarios tienen que ayudar a la lectura del código por
+    parte de otro desarrollador (como por ejemplo tú mismo en el
+    futuro).
+
+  - Es más fácil de leer un comentario justo delante de la primera
+    línea donde está lo que comenta. Si lo pones detrás, el código ya
+    lo ha leído el otro programador. Si lo pones al lado con varios
+    tabuladores el texto se sale de la pantalla del editor y es
+    difícil leerlo.
+
+  - A veces el código habla por si mismo y el comentario estorba
+    Ej. x = x + 1; // Suma 1
+
+- Cuando el código se "complica", sea feo o haya tengais que repetirlo
+  varias veces, debe moverse a un método privado y darle un buen
+  nombre con un comentario conciso delante si el nombre no es
+  suficiente.
+
+- El operador == de Java compara referencias de objetos. Si quieres
+  comparar si dos strings son iguales se debe usar el método equals.
+
+- Los recorridos sobre colas (q) con un bucle del tipo
+  "for (i = 0; i < q.size(); i++) {...} " son incorrectos si se
+  realizan borrados dentro del cuerpo del bucle. Piensa en ello.
+

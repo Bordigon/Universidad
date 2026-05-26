@@ -1,0 +1,69 @@
+========================================================================
+COMENTARIOS GENERALES SOBRE EL USO DE LA LIBRERIA JCSP EN LA PRACTICA
+
+- En paso de mensajes los procesos no comparten memoria, por lo tanto
+  ninguna variable compartida (atributos) puede ser accedida desde las
+  operaciones del recurso.
+
+- Si una operación no podria cambiar el CPRE de ninguna otra operación no
+es necesario intentar hacer desbloqueos (eficencia).
+
+- No esta aconsejable encolar operaciónes sin comprobar sus CPREs.
+Si una CPRE es true se debe responder inmediatemente (eficencia).
+
+- Nada en la clase puede ser static (excepto constantes): impidirías
+  que pueda usarse en código en múltiples recursos a la vez.
+
+- Cuando la CPRE de una operación es cierta, y la operacion no devuelve
+  ningún valor, no es necesario el canal de respuesta (gracias a que el
+  paso de mensajes es síncrono). [notad que lanzar una excepcion cuenta
+  como un valor devuelto]
+
+- Cuando la CPRE de una operación es cierta no es necesario usar una
+  cola de peticiones para "aplazar" su ejecución.
+
+- Nunca se puede lanzar una excepción desde el método run.
+
+- No se debe crear un numero grande de canales (> 1000).
+
+------------------------------------------------------------------------
+SOBRE ESTILO, BUENAS PRÁCTICAS Y DETALLES DE JAVA
+
+- Se deben seguir las convenciones de código que suelen rodear a Java
+  Ej. buenos nombres de variables y operaciones, nombre de las clases
+  empezando en mayúsculas, sangrado (indentation) consistente, etc.
+
+- No deberían quedar sentencias de depuración (prints)
+
+- No deberían quedar comentarios // TODO (to do = por hacer)
+
+- No debería dejarse código comentado y finalmente descartado.
+
+- Los comentarios deben ser "buenos" y deben ayudar a
+  leer el código. Por ejemplo:
+
+  - Los comentarios tienen que ayudar a la lectura del código por
+    parte de otro desarrollador (como por ejemplo tú mismo en el
+    futuro).
+
+  - Es más fácil de leer un comentario justo delante de la primera
+    línea donde está lo que comenta. Si lo pones detrás, el código ya
+    lo ha leído el otro programador. Si lo pones al lado con varios
+    tabuladores el texto se sale de la pantalla del editor y es
+    difícil leerlo.
+
+  - A veces el código habla por si mismo y el comentario estorba
+    Ej. x = x + 1; // Suma 1
+
+- Cuando el código se "complica", sea feo o haya tengais que repetirlo
+  varias veces, debe moverse a un método privado y darle un buen
+  nombre con un comentario conciso delante si el nombre no es
+  suficiente.
+
+- El operador == de Java compara referencias de objetos. Si quieres
+  comparar si dos strings son iguales se debe usar el método equals.
+
+- Los recorridos sobre colas (q) con un bucle del tipo
+  "for (i = 0; i < q.size(); i++) {...} " son incorrectos si se
+  realizan borrados dentro del cuerpo del bucle. Piensa en ello.
+

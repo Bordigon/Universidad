@@ -1,5 +1,6 @@
+package entregas.concurrencia.p10;
 import org.jcsp.lang.*;
-//import es.upm.babel.cclib.ConcIO;
+import es.upm.babel.cclib.ConcIO;
 
 // CTAD Barcaza
 public class BarcazaCSP implements Barcaza, CSProcess {

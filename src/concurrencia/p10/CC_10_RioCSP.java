@@ -6,7 +6,8 @@
 // Gracias al uso de la interfaz Barcaza
 // solo cambian cuatro líneas de código
 // respecto a CC_09_RioMon.java
-
+ 	
+package entregas.concurrencia.p10;
 import org.jcsp.lang.*;
 
 public class CC_10_RioCSP { // *** //
